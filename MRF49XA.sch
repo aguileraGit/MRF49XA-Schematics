@@ -13924,11 +13924,10 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 </net>
 <net name="N$18" class="0">
 <segment>
-<wire x1="-121.92" y1="109.22" x2="147.32" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="147.32" y1="109.22" x2="147.32" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="147.32" y1="10.16" x2="-127" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="-127" y1="109.22" x2="152.4" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="109.22" x2="152.4" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="10.16" x2="-127" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="-127" y1="10.16" x2="-127" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="-127" y1="109.22" x2="-121.92" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$19" class="0">
