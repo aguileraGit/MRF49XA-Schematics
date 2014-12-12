@@ -10054,6 +10054,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="0.7" y1="0.85" x2="1.2" y2="1.5" layer="51"/>
 <rectangle x1="-1.2" y1="0.85" x2="-0.7" y2="1.5" layer="51"/>
 </package>
+<package name="SC70">
+<wire x1="1" y1="0.625" x2="1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="-0.625" x2="-1" y2="0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="-0.625" x2="1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="0.625" x2="1" y2="0.625" width="0.127" layer="51"/>
+<smd name="1" x="-0.65" y="-0.825" dx="0.4" dy="0.75" layer="1" cream="no"/>
+<smd name="2" x="0" y="-0.825" dx="0.4" dy="0.75" layer="1" cream="no"/>
+<smd name="3" x="0.65" y="-0.825" dx="0.4" dy="0.75" layer="1" cream="no"/>
+<smd name="4" x="0.65" y="0.825" dx="0.4" dy="0.75" layer="1" cream="no"/>
+<smd name="5" x="-0.65" y="0.825" dx="0.4" dy="0.75" layer="1" cream="no"/>
+<text x="-0.889" y="1.524" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-0.762" y="-0.254" size="0.4064" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.85" y1="0.45" x2="-0.45" y2="1.2" layer="31"/>
+<rectangle x1="0.45" y1="0.45" x2="0.85" y2="1.2" layer="31"/>
+<rectangle x1="-0.8382" y1="-1.1684" x2="-0.508" y2="-0.4826" layer="31"/>
+<rectangle x1="-0.1651" y1="-1.1684" x2="0.1651" y2="-0.4826" layer="31"/>
+<rectangle x1="0.508" y1="-1.1684" x2="0.8382" y2="-0.4826" layer="31"/>
+</package>
 </packages>
 <symbols>
 <symbol name="MCP73831">
@@ -10068,6 +10086,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pin name="VBAT" x="10.16" y="2.54" length="short" direction="pwr" rot="R180"/>
 <pin name="PROG" x="10.16" y="0" length="short" direction="in" rot="R180"/>
 <pin name="VSS" x="10.16" y="-2.54" length="short" direction="pwr" rot="R180"/>
+</symbol>
+<symbol name="V-REG-LDO">
+<wire x1="-7.62" y1="-7.62" x2="5.08" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="5.08" y1="-7.62" x2="5.08" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="5.08" y1="7.62" x2="-7.62" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="-7.62" y1="7.62" x2="-7.62" y2="-7.62" width="0.4064" layer="94"/>
+<text x="-7.62" y="9.144" size="1.778" layer="95">&gt;NAME</text>
+<text x="-7.62" y="-11.43" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="IN" x="-10.16" y="5.08" visible="pin" length="short" direction="in"/>
+<pin name="GND" x="-10.16" y="0" visible="pin" length="short" direction="in"/>
+<pin name="OUT" x="7.62" y="5.08" visible="pin" length="short" direction="pas" rot="R180"/>
+<pin name="EN" x="-10.16" y="-5.08" visible="pin" length="short" direction="in"/>
+<pin name="BP" x="7.62" y="-5.08" visible="pin" length="short" direction="in" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -10091,6 +10122,39 @@ IC-09995</description>
 <technology name="">
 <attribute name="PROD_ID" value="IC-09995"/>
 </technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="V_REG_LDO" prefix="U">
+<description>&lt;b&gt;Voltage Regulator LDO&lt;/b&gt;
+Standard 150mA LDO voltage regulator in SOT-23 layout. Micrel part MIC5205. BP (by-pass) pin is used to lower output noise with 470pF cap.</description>
+<gates>
+<gate name="G$1" symbol="V-REG-LDO" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="SMD" package="SOT23-5">
+<connects>
+<connect gate="G$1" pin="BP" pad="4"/>
+<connect gate="G$1" pin="EN" pad="3"/>
+<connect gate="G$1" pin="GND" pad="2"/>
+<connect gate="G$1" pin="IN" pad="1"/>
+<connect gate="G$1" pin="OUT" pad="5"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD2" package="SC70">
+<connects>
+<connect gate="G$1" pin="BP" pad="4"/>
+<connect gate="G$1" pin="EN" pad="3"/>
+<connect gate="G$1" pin="GND" pad="2"/>
+<connect gate="G$1" pin="IN" pad="1"/>
+<connect gate="G$1" pin="OUT" pad="5"/>
+</connects>
+<technologies>
+<technology name=""/>
 </technologies>
 </device>
 </devices>
@@ -12811,18 +12875,6 @@ Used, eg, on the Arduino Pro/ Pro Mini boards.&lt;br&gt;
 </library>
 <library name="TestLibrary">
 <packages>
-<package name="TLV1117">
-<smd name="P$1" x="-2.3" y="-3.81" dx="2.15" dy="0.95" layer="1" rot="R90"/>
-<smd name="P$2" x="0" y="-3.81" dx="2.15" dy="0.95" layer="1" rot="R90"/>
-<smd name="P$3" x="2.3" y="-3.81" dx="2.15" dy="0.95" layer="1" rot="R90"/>
-<smd name="P$4" x="0" y="1.99" dx="2.15" dy="3.25" layer="1" rot="R90"/>
-<text x="-3.81" y="3.81" size="1.27" layer="21">&gt;NAME</text>
-<text x="-3.81" y="-7.62" size="1.27" layer="21">&gt;VALUE</text>
-<wire x1="-3.81" y1="1.27" x2="-3.81" y2="-2.54" width="0.127" layer="51"/>
-<wire x1="-3.81" y1="-2.54" x2="3.81" y2="-2.54" width="0.127" layer="51"/>
-<wire x1="3.81" y1="-2.54" x2="3.81" y2="1.27" width="0.127" layer="51"/>
-<wire x1="3.81" y1="1.27" x2="-3.81" y2="1.27" width="0.127" layer="51"/>
-</package>
 <package name="ANT1204F002R0433A">
 <smd name="FEEDPOINT" x="-6.15" y="0" dx="4.5" dy="1.5" layer="1" rot="R90"/>
 <smd name="SOLDER" x="6.15" y="0" dx="4.5" dy="1.5" layer="1" rot="R90"/>
@@ -12836,18 +12888,6 @@ Used, eg, on the Arduino Pro/ Pro Mini boards.&lt;br&gt;
 </package>
 </packages>
 <symbols>
-<symbol name="TLV1117">
-<pin name="VIN" x="-17.78" y="15.24" length="middle"/>
-<pin name="GND" x="-5.08" y="2.54" length="middle" rot="R90"/>
-<pin name="VOUT" x="12.7" y="15.24" length="middle" rot="R180"/>
-<pin name="GND2" x="0" y="2.54" length="middle" rot="R90"/>
-<wire x1="-12.7" y1="17.78" x2="-12.7" y2="7.62" width="0.254" layer="94"/>
-<wire x1="-12.7" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="7.62" x2="7.62" y2="17.78" width="0.254" layer="94"/>
-<wire x1="7.62" y1="17.78" x2="-12.7" y2="17.78" width="0.254" layer="94"/>
-<text x="-12.7" y="-2.54" size="0.6096" layer="96">&gt;VALUE</text>
-<text x="-12.7" y="20.32" size="0.6096" layer="95">&gt;NAME</text>
-</symbol>
 <symbol name="ANT1204F002R0433A">
 <pin name="FP" x="-12.7" y="2.54" length="middle"/>
 <pin name="NC" x="12.7" y="2.54" length="middle" direction="nc" rot="R180"/>
@@ -12860,25 +12900,6 @@ Used, eg, on the Arduino Pro/ Pro Mini boards.&lt;br&gt;
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="TLV1117" uservalue="yes">
-<description>TI TLV1117 3.3V regulator</description>
-<gates>
-<gate name="G$1" symbol="TLV1117" x="2.54" y="-12.7"/>
-</gates>
-<devices>
-<device name="" package="TLV1117">
-<connects>
-<connect gate="G$1" pin="GND" pad="P$2"/>
-<connect gate="G$1" pin="GND2" pad="P$4"/>
-<connect gate="G$1" pin="VIN" pad="P$1"/>
-<connect gate="G$1" pin="VOUT" pad="P$3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="ANT1204F002R0433A" prefix="U">
 <description>ANT1204F002R0433A
 http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
@@ -12974,7 +12995,6 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <part name="TP2" library="testpad" deviceset="TP" device="TP08R"/>
 <part name="TP3" library="testpad" deviceset="TP" device="TP08R"/>
 <part name="Y1" library="SparkFun-FreqCtrl" deviceset="RESONATOR" device="8MHZ" value="16MHZ"/>
-<part name="U$4" library="TestLibrary" deviceset="TLV1117" device=""/>
 <part name="L2" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603"/>
 <part name="L1" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603"/>
 <part name="L3" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603"/>
@@ -12982,6 +13002,7 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <part name="C6" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP"/>
 <part name="C9" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP"/>
 <part name="U2" library="TestLibrary" deviceset="ANT1204F002R0433A" device=""/>
+<part name="U3" library="SparkFun-PowerIC" deviceset="V_REG_LDO" device="SMD"/>
 </parts>
 <sheets>
 <sheet>
@@ -13004,11 +13025,11 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <instance part="C3" gate="G$1" x="91.44" y="149.86"/>
 <instance part="C4" gate="G$1" x="-43.18" y="60.96"/>
 <instance part="+3V1" gate="G$1" x="83.82" y="167.64"/>
-<instance part="+3V3" gate="G$1" x="58.42" y="167.64"/>
+<instance part="+3V3" gate="G$1" x="50.8" y="177.8"/>
 <instance part="+3V4" gate="G$1" x="-66.04" y="83.82"/>
 <instance part="C8" gate="G$1" x="-50.8" y="53.34"/>
 <instance part="U$1" gate="G$1" x="-86.36" y="68.58" smashed="yes"/>
-<instance part="GND3" gate="1" x="38.1" y="134.62"/>
+<instance part="GND3" gate="1" x="17.78" y="157.48"/>
 <instance part="GND4" gate="1" x="83.82" y="134.62"/>
 <instance part="GND6" gate="1" x="-66.04" y="35.56"/>
 <instance part="GND7" gate="1" x="-58.42" y="35.56"/>
@@ -13084,7 +13105,6 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <attribute name="TP_SIGNAL_NAME" x="130.81" y="166.37" size="1.778" layer="97" rot="R90"/>
 </instance>
 <instance part="Y1" gate="G$1" x="195.58" y="53.34" rot="R270"/>
-<instance part="U$4" gate="G$1" x="40.64" y="144.78"/>
 <instance part="L2" gate="G$1" x="68.58" y="58.42"/>
 <instance part="L1" gate="G$1" x="68.58" y="78.74"/>
 <instance part="L3" gate="G$1" x="91.44" y="58.42"/>
@@ -13092,6 +13112,7 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <instance part="C6" gate="G$1" x="104.14" y="68.58" rot="R90"/>
 <instance part="C9" gate="G$1" x="91.44" y="40.64"/>
 <instance part="U2" gate="ANTENNA" x="127" y="71.12" rot="MR180"/>
+<instance part="U3" gate="G$1" x="38.1" y="165.1"/>
 </instances>
 <busses>
 </busses>
@@ -13121,9 +13142,9 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <net name="+3V3" class="0">
 <segment>
 <pinref part="+3V3" gate="G$1" pin="+3V3"/>
-<wire x1="58.42" y1="165.1" x2="58.42" y2="160.02" width="0.1524" layer="91"/>
-<pinref part="U$4" gate="G$1" pin="VOUT"/>
-<wire x1="58.42" y1="160.02" x2="53.34" y2="160.02" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="175.26" x2="50.8" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="170.18" x2="45.72" y2="170.18" width="0.1524" layer="91"/>
+<pinref part="U3" gate="G$1" pin="OUT"/>
 </segment>
 <segment>
 <wire x1="76.2" y1="160.02" x2="76.2" y2="154.94" width="0.1524" layer="91"/>
@@ -13223,9 +13244,14 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <label x="-2.54" y="160.02" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="12.7" y="160.02" size="1.778" layer="95"/>
-<pinref part="U$4" gate="G$1" pin="VIN"/>
-<wire x1="15.24" y1="160.02" x2="22.86" y2="160.02" width="0.1524" layer="91"/>
+<label x="15.24" y="170.18" size="1.778" layer="95"/>
+<wire x1="17.78" y1="170.18" x2="27.94" y2="170.18" width="0.1524" layer="91"/>
+<pinref part="U3" gate="G$1" pin="IN"/>
+</segment>
+<segment>
+<label x="25.4" y="144.78" size="1.778" layer="95"/>
+<wire x1="27.94" y1="147.32" x2="27.94" y2="160.02" width="0.1524" layer="91"/>
+<pinref part="U3" gate="G$1" pin="EN"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -13368,20 +13394,15 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <wire x1="180.34" y1="53.34" x2="180.34" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="38.1" y1="137.16" x2="38.1" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="U$4" gate="G$1" pin="GND"/>
-<pinref part="U$4" gate="G$1" pin="GND2"/>
-<wire x1="35.56" y1="147.32" x2="38.1" y2="147.32" width="0.1524" layer="91"/>
-<junction x="38.1" y="147.32"/>
-<wire x1="38.1" y1="147.32" x2="40.64" y2="147.32" width="0.1524" layer="91"/>
-<junction x="35.56" y="147.32"/>
-<junction x="40.64" y="147.32"/>
-</segment>
-<segment>
 <pinref part="C9" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="38.1" x2="91.44" y2="35.56" width="0.1524" layer="91"/>
 <label x="88.9" y="33.02" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="GND3" gate="1" pin="GND"/>
+<wire x1="17.78" y1="160.02" x2="17.78" y2="165.1" width="0.1524" layer="91"/>
+<pinref part="U3" gate="G$1" pin="GND"/>
+<wire x1="17.78" y1="165.1" x2="27.94" y2="165.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
