@@ -13003,6 +13003,8 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <part name="C9" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP"/>
 <part name="U2" library="TestLibrary" deviceset="ANT1204F002R0433A" device=""/>
 <part name="U3" library="SparkFun-PowerIC" deviceset="V_REG_LDO" device="SMD"/>
+<part name="C10" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
+<part name="GND2" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13113,6 +13115,8 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <instance part="C9" gate="G$1" x="91.44" y="40.64"/>
 <instance part="U2" gate="ANTENNA" x="127" y="71.12" rot="MR180"/>
 <instance part="U3" gate="G$1" x="38.1" y="165.1"/>
+<instance part="C10" gate="G$1" x="175.26" y="91.44"/>
+<instance part="GND2" gate="1" x="175.26" y="81.28"/>
 </instances>
 <busses>
 </busses>
@@ -13403,6 +13407,11 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <wire x1="17.78" y1="160.02" x2="17.78" y2="165.1" width="0.1524" layer="91"/>
 <pinref part="U3" gate="G$1" pin="GND"/>
 <wire x1="17.78" y1="165.1" x2="27.94" y2="165.1" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C10" gate="G$1" pin="2"/>
+<pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="175.26" y1="88.9" x2="175.26" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -13973,6 +13982,18 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <wire x1="-5.08" y1="0" x2="-5.08" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="-43.18" x2="53.34" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="53.34" y1="-43.18" x2="53.34" y2="0" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="AREF" class="0">
+<segment>
+<pinref part="C10" gate="G$1" pin="1"/>
+<wire x1="175.26" y1="96.52" x2="175.26" y2="99.06" width="0.1524" layer="91"/>
+<label x="175.26" y="99.06" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="AREF"/>
+<wire x1="220.98" y1="88.9" x2="215.9" y2="88.9" width="0.1524" layer="91"/>
+<label x="213.36" y="88.9" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
