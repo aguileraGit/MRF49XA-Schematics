@@ -13019,6 +13019,9 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <text x="-5.08" y="-45.72" size="1.778" layer="91">Switch</text>
 <text x="167.64" y="7.62" size="1.778" layer="91">Processor</text>
 <text x="119.38" y="119.38" size="1.778" layer="91">Headers &amp; Test points</text>
+<text x="25.4" y="137.16" size="1.778" layer="91">ADP1712
+MIC5259
+MIC5205</text>
 </plain>
 <instances>
 <instance part="Q1" gate="G$1" x="-66.04" y="53.34" rot="MR270"/>
@@ -14001,4 +14004,10 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
