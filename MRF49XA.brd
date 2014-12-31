@@ -1596,27 +1596,27 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="PROD_ID" value="XTAL-08895" x="15.9" y="23.2" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="17.9475" y="23.0125" size="0.6096" layer="27"/>
 </element>
-<element name="L2" library="SparkFun-Passives" package="0603" value="" x="35.8" y="15.3" smashed="yes" rot="R270">
+<element name="L2" library="SparkFun-Passives" package="0603" value="8.2nH" x="35.8" y="15.3" smashed="yes" rot="R270">
 <attribute name="NAME" x="36.662" y="13.789" size="0.6096" layer="25" font="vector" rot="R270"/>
 <attribute name="VALUE" x="34.657" y="16.316" size="0.4064" layer="27" font="vector" rot="R270"/>
 </element>
-<element name="L1" library="SparkFun-Passives" package="0603" value="" x="35.8" y="18.7" smashed="yes" rot="R270">
+<element name="L1" library="SparkFun-Passives" package="0603" value="100nH" x="35.8" y="18.7" smashed="yes" rot="R270">
 <attribute name="NAME" x="35.462" y="21.489" size="0.6096" layer="25" font="vector" rot="R270"/>
 <attribute name="VALUE" x="34.657" y="19.716" size="0.4064" layer="27" font="vector" rot="R270"/>
 </element>
-<element name="L3" library="SparkFun-Passives" package="0603" value="" x="38.1" y="16.2" smashed="yes" rot="R180">
+<element name="L3" library="SparkFun-Passives" package="0603" value="22nH" x="38.1" y="16.2" smashed="yes" rot="R180">
 <attribute name="NAME" x="37.589" y="15.438" size="0.6096" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="39.116" y="17.343" size="0.4064" layer="27" font="vector" rot="R180"/>
 </element>
-<element name="C5" library="SparkFun-Passives" package="0603-CAP" value="" x="38.1" y="17.8" smashed="yes">
+<element name="C5" library="SparkFun-Passives" package="0603-CAP" value="1.2pF" x="38.1" y="17.8" smashed="yes">
 <attribute name="NAME" x="37.611" y="18.562" size="0.6096" layer="25" font="vector"/>
 <attribute name="VALUE" x="37.084" y="16.657" size="0.4064" layer="27" font="vector"/>
 </element>
-<element name="C6" library="SparkFun-Passives" package="0603-CAP" value="" x="40.5" y="17" smashed="yes" rot="R270">
+<element name="C6" library="SparkFun-Passives" package="0603-CAP" value="27pF" x="40.5" y="17" smashed="yes" rot="R270">
 <attribute name="NAME" x="41.262" y="16.889" size="0.6096" layer="25" font="vector"/>
 <attribute name="VALUE" x="39.357" y="18.016" size="0.4064" layer="27" font="vector" rot="R270"/>
 </element>
-<element name="C9" library="SparkFun-Passives" package="0603-CAP" value="" x="35.8" y="11.9" smashed="yes" rot="R270">
+<element name="C9" library="SparkFun-Passives" package="0603-CAP" value="2.7pF" x="35.8" y="11.9" smashed="yes" rot="R270">
 <attribute name="NAME" x="35.662" y="10.289" size="0.6096" layer="25" font="vector" rot="R270"/>
 <attribute name="VALUE" x="34.657" y="12.916" size="0.4064" layer="27" font="vector" rot="R270"/>
 </element>

@@ -12995,12 +12995,12 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <part name="TP2" library="testpad" deviceset="TP" device="TP08R"/>
 <part name="TP3" library="testpad" deviceset="TP" device="TP08R"/>
 <part name="Y1" library="SparkFun-FreqCtrl" deviceset="RESONATOR" device="8MHZ" value="16MHZ"/>
-<part name="L2" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603"/>
-<part name="L1" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603"/>
-<part name="L3" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603"/>
-<part name="C5" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP"/>
-<part name="C6" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP"/>
-<part name="C9" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP"/>
+<part name="L2" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603" value="8.2nH"/>
+<part name="L1" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603" value="100nH"/>
+<part name="L3" library="SparkFun-Passives" deviceset="INDUCTOR" device="0603" value="22nH"/>
+<part name="C5" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="1.2pF"/>
+<part name="C6" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="27pF"/>
+<part name="C9" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="2.7pF"/>
 <part name="U2" library="TestLibrary" deviceset="ANT1204F002R0433A" device=""/>
 <part name="U3" library="SparkFun-PowerIC" deviceset="V_REG_LDO" device="SMD"/>
 <part name="C10" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
@@ -13110,12 +13110,30 @@ MIC5205</text>
 <attribute name="TP_SIGNAL_NAME" x="130.81" y="166.37" size="1.778" layer="97" rot="R90"/>
 </instance>
 <instance part="Y1" gate="G$1" x="195.58" y="53.34" rot="R270"/>
-<instance part="L2" gate="G$1" x="68.58" y="58.42"/>
-<instance part="L1" gate="G$1" x="68.58" y="78.74"/>
-<instance part="L3" gate="G$1" x="91.44" y="58.42"/>
-<instance part="C5" gate="G$1" x="81.28" y="68.58" rot="R90"/>
-<instance part="C6" gate="G$1" x="104.14" y="68.58" rot="R90"/>
-<instance part="C9" gate="G$1" x="91.44" y="40.64"/>
+<instance part="L2" gate="G$1" x="68.58" y="58.42" smashed="yes">
+<attribute name="NAME" x="71.12" y="63.5" size="1.778" layer="95"/>
+<attribute name="VALUE" x="71.12" y="60.96" size="1.778" layer="96"/>
+</instance>
+<instance part="L1" gate="G$1" x="68.58" y="78.74" smashed="yes">
+<attribute name="NAME" x="71.12" y="83.82" size="1.778" layer="95"/>
+<attribute name="VALUE" x="71.12" y="81.28" size="1.778" layer="96"/>
+</instance>
+<instance part="L3" gate="G$1" x="91.44" y="58.42" smashed="yes">
+<attribute name="NAME" x="93.98" y="63.5" size="1.778" layer="95"/>
+<attribute name="VALUE" x="93.98" y="60.96" size="1.778" layer="96"/>
+</instance>
+<instance part="C5" gate="G$1" x="81.28" y="68.58" smashed="yes" rot="R90">
+<attribute name="NAME" x="78.359" y="75.184" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="80.899" y="72.644" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C6" gate="G$1" x="104.14" y="68.58" smashed="yes" rot="R90">
+<attribute name="NAME" x="101.219" y="75.184" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="103.759" y="72.644" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C9" gate="G$1" x="91.44" y="40.64" smashed="yes">
+<attribute name="NAME" x="95.504" y="43.561" size="1.778" layer="95"/>
+<attribute name="VALUE" x="95.504" y="41.021" size="1.778" layer="96"/>
+</instance>
 <instance part="U2" gate="ANTENNA" x="127" y="71.12" rot="MR180"/>
 <instance part="U3" gate="G$1" x="38.1" y="165.1"/>
 <instance part="C10" gate="G$1" x="175.26" y="91.44"/>
