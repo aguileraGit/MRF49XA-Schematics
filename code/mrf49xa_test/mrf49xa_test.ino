@@ -9,7 +9,7 @@
 //SPI commands
 const long    GENCREG 		= 0x8038;		// Cload=12.5pF; TX registers & FIFO are disabled
 const long    PMCREG 		= 0x8200;		// Everything off, uC clk enabled
-const long    RXCREG 		= 0x94A1;		// BW=135kHz, DRSSI=-97dBm, pin8=VDI, fast VDI
+const long    RXCREG 		= 0x94A1;		// BW=135kHz, DRCSI=-97dBm, pin8=VDI, fast VDI
 const long    TXBREG 		= 0xB800;
 const long    FIFORSTREG	= 0xCA81;		// Sync. latch cleared, limit=8bits, disable sensitive reset
 const long    BBFCREG 		= 0xC22C;		// Digital LPF (default)
@@ -19,7 +19,7 @@ const long    TXCREG		= 0x9830;		// df=60kHz, Pmax, normal modulation polarity
 const long    DRSREG 		= 0xC623;		// 9579Baud (default)
 
 int LED = 13;
-int ChipSelect = 10;
+int CS = 17;
 
 uint16_t STSREAD = 0x0000;
 
@@ -27,9 +27,9 @@ void setup(void) {
   //Set LED
   pinMode(LED, OUTPUT);
   
-  //Set SS
-  pinMode(ChipSelect, OUTPUT);
-  digitalWrite(ChipSelect, HIGH);
+  //Set CS
+  pinMode(CS, OUTPUT);
+  digitalWrite(CS, HIGH);
   
   //Begin Serial
   Serial.begin(57600);
@@ -57,7 +57,6 @@ void loop(void) {
   Serial.println(statusReg1, HEX);
   Serial.println(statusReg2, HEX);
   
-  
   spiEnd();
   delay(700);
 }
@@ -72,6 +71,7 @@ void initMRF49XA(void) {
   spiCommand( TXCREG);	
 //---- antenna tunning
   spiCommand( PMCREG | 0x0020);		// turn on tx
+  delay(5);
 //---- end of antenna tunning
   spiCommand( PMCREG | 0x0080);		// turn off Tx, turn on receiver
   spiCommand( GENCREG | 0x0040);		// enable the FIFO
@@ -80,7 +80,7 @@ void initMRF49XA(void) {
 }
 
 void spiBegin(void) {
-  digitalWrite(ChipSelect, HIGH);
+  digitalWrite(CS, HIGH);
   SPI.begin();
   //Lower speed
   SPI.setClockDivider(SPI_CLOCK_DIV16);
@@ -88,30 +88,31 @@ void spiBegin(void) {
 
 void spiEnd(void) {
   SPI.end();
-  digitalWrite(ChipSelect, LOW);
+  digitalWrite(CS, LOW);
 }
 
 void spiCommand(uint16_t spiCmd) {
   spiWrite((spiCmd & 0xFF00) >> 8);
   spiWrite((spiCmd & 0x00FF));
+  delay(1);
 }
 
 uint16_t spiRead(void) {
-  digitalWrite(ChipSelect, LOW);
+  digitalWrite(CS, LOW);
   
   uint8_t spiData0 = SPI.transfer(0x00);
   uint8_t spiData1 = SPI.transfer(0x00);
   
-  digitalWrite(ChipSelect, HIGH);
+  digitalWrite(CS, HIGH);
  
   uint16_t spiData = (uint16_t)(spiData0 << 8 | spiData1);
   return spiData;
 }
 
 void spiWrite(uint8_t spiData) {
-  digitalWrite(ChipSelect, LOW);
+  digitalWrite(CS, LOW);
   SPI.transfer(spiData);
-  digitalWrite(ChipSelect, HIGH);
+  digitalWrite(CS, HIGH);
 }
 
 
