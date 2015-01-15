@@ -1,8 +1,8 @@
 /*
-  Diego Aguilera
- 11-Jan-2015
- Test code for the mrf49xa board
- */
+ Diego Aguilera
+11-Jan-2015
+Test code for the mrf49xa board
+*/
 
 #include <SPI.h>
 
@@ -25,47 +25,49 @@ int IRQ = 0;
 uint16_t STSREAD = 0x0000;
 
 void setup(void) {
-  //Set LED
-  pinMode(LED, OUTPUT);
+ //Set LED
+ pinMode(LED, OUTPUT);
 
-  //Set CS
-  pinMode(CS, OUTPUT);
-  digitalWrite(CS, HIGH);
-  
-  //Set IRQ pin - Needs to become an interrupt at some point
-  pinMode(IRQ, INPUT);
+ //Set CS
+ pinMode(CS, OUTPUT);
+ digitalWrite(CS, HIGH);
 
-  //Begin Serial
-  Serial.begin(57600);
+ //Set IRQ pin - Needs to become an interrupt at some point
+ pinMode(IRQ, INPUT);
 
-  delay(500);
+ //Begin Serial
+ Serial.begin(57600);
+
+ delay(500);
 }
 
 void loop(void) {
-  //Start SPI
-  spiBegin();
+ //Start SPI
+ spiBegin();
 
-  //Wait for reset to finish
-  delay(200);
+ //Wait for reset to finish
+ delay(200);
 
-  //Init MRF49XA
-  initMRF49XA();
+ //Init MRF49XA
+ initMRF49XA();
+ delay(200);
 
-  //Attempt to read status register
-  spiCommand( STSREAD );
-  uint16_t statusReg = spiRead();
-  uint8_t statusReg1 = (uint8_t)((statusReg & 0xFF00) >> 8);
-  uint8_t statusReg2 = (uint8_t)(statusReg & 0x00FF);
+ while(1){
+   readStatus();
+   delay(1000);
+ }
+ //Attempt to read status register
+ //uint16_t statusReg = readStatus();
+ //uint8_t statusReg1 = (uint8_t)((statusReg & 0xFF00) >> 8);
+ //uint8_t statusReg2 = (uint8_t)(statusReg & 0x00FF);
 
-  //Print
-  Serial.println(statusReg1, HEX);
-  Serial.println(statusReg2, HEX);
+ //Print
+ //Serial.println(statusReg1, HEX);
+ //Serial.println(statusReg2, HEX);
 
-  spiEnd();
-  delay(700);
+ spiEnd();
+ delay(700);
 }
-
-
 
 void MRF49XA_Send_Packet(unsigned char *data, unsigned char length){
 	int a;
@@ -108,68 +110,77 @@ void MRF49XA_Send_Packet(unsigned char *data, unsigned char length){
 }
 
 void initMRF49XA(void) {
-  spiCommand( FIFORSTREG );
-  spiCommand( FIFORSTREG | 0x0002);
-  spiCommand( GENCREG);
-  spiCommand( CFSREG);
-  spiCommand( PMCREG);
-  spiCommand( RXCREG);
-  spiCommand( TXCREG);	
-  //---- antenna tunning
-  spiCommand( PMCREG | 0x0020);		// turn on tx
-  delay(5);
-  //---- end of antenna tunning
-  spiCommand( PMCREG | 0x0080);		// turn off Tx, turn on receiver
-  spiCommand( GENCREG | 0x0040);		// enable the FIFO
-  spiCommand( FIFORSTREG);
-  spiCommand( FIFORSTREG | 0x0002);	// enable syncron latch	 
+ spiCommand( FIFORSTREG );
+ spiCommand( FIFORSTREG | 0x0002);
+ spiCommand( GENCREG);
+ spiCommand( CFSREG);
+ spiCommand( PMCREG);
+ spiCommand( RXCREG);
+ spiCommand( TXCREG);	
+ //---- antenna tunning
+ spiCommand( PMCREG | 0x0020);		// turn on tx
+ delay(5);
+ //---- end of antenna tunning
+ spiCommand( PMCREG | 0x0080);		// turn off Tx, turn on receiver
+ spiCommand( GENCREG | 0x0040);		// enable the FIFO
+ spiCommand( FIFORSTREG);
+ spiCommand( FIFORSTREG | 0x0002);	// enable syncron latch	 
 }
 
 void spiBegin(void) {
-  digitalWrite(CS, HIGH);
-  SPI.begin();
-  //Lower speed
-  SPI.setClockDivider(SPI_CLOCK_DIV16);
+ digitalWrite(CS, HIGH);
+ SPI.begin();
+ //Lower speed
+ SPI.setClockDivider(SPI_CLOCK_DIV16);
 }
 
 void spiEnd(void) {
-  SPI.end();
-  digitalWrite(CS, LOW);
+ SPI.end();
+ digitalWrite(CS, LOW);
 }
 
 void spiCommand(uint16_t spiCmd) {
-  spiWrite((spiCmd & 0xFF00) >> 8);
-  spiWrite((spiCmd & 0x00FF));
-  delay(1);
+ digitalWrite(CS, LOW);
+ SPI.transfer((spiCmd & 0xFF00) >> 8);
+ SPI.transfer((spiCmd & 0x00FF));
+ digitalWrite(CS, HIGH);
+ delay(0);
+}
+uint16_t readStatus() {
+ digitalWrite(CS, LOW);
+
+ uint8_t spiData0 = SPI.transfer(0x00);
+ uint8_t spiData1 = SPI.transfer(0x00);
+
+ digitalWrite(CS, HIGH);
+
+ //Debug
+ Serial.println(spiData0, BIN);
+ Serial.println(spiData1, BIN);
+ Serial.println(" ");
+
+ uint16_t spiData = (uint16_t)(spiData0 << 8 | spiData1);
+ return spiData;
 }
 
+
 void spiWrite16(uint16_t spiCmd) {
-  spiWrite((spiCmd & 0xFF00) >> 8);
-  spiWrite((spiCmd & 0x00FF));
-  delay(1);
+ //digitalWrite(CS, LOW);
+ SPI.transfer((spiCmd & 0xFF00) >> 8);
+ SPI.transfer((spiCmd & 0x00FF));
+ //digitalWrite(CS, HIGH);
+ delay(0);
 }
 
 uint16_t spiRead(void) {
-  digitalWrite(CS, LOW);
+ digitalWrite(CS, LOW);
 
-  uint8_t spiData0 = SPI.transfer(0x00);
-  uint8_t spiData1 = SPI.transfer(0x00);
+ uint8_t spiData0 = SPI.transfer(0x00);
+ uint8_t spiData1 = SPI.transfer(0x00);
 
-  digitalWrite(CS, HIGH);
+ digitalWrite(CS, HIGH);
 
-  uint16_t spiData = (uint16_t)(spiData0 << 8 | spiData1);
-  return spiData;
+ uint16_t spiData = (uint16_t)(spiData0 << 8 | spiData1);
+ return spiData;
 }
-
-void spiWrite(uint8_t spiData) {
-  digitalWrite(CS, LOW);
-  SPI.transfer(spiData);
-  digitalWrite(CS, HIGH);
-}
-
-
-
-
-
-
 
