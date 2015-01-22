@@ -13022,6 +13022,10 @@ http://www.yageo.com/documents/recent/An_SMD_UHF_433_1204_0.pdf</description>
 <text x="25.4" y="137.16" size="1.778" layer="91">ADP1712
 MIC5259
 MIC5205</text>
+<text x="167.64" y="-20.32" size="1.778" layer="91">Board revisions:
+-Add light to pin 13 so know when it's booting
+-Add power switch on 3V line
+-Add switch to boot into bootloader</text>
 </plain>
 <instances>
 <instance part="Q1" gate="G$1" x="-66.04" y="53.34" rot="MR270"/>
